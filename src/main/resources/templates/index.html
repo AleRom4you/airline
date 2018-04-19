@@ -2,94 +2,144 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Selection committee</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <title th:text="${title}"></title>
+
+    <!-- Font Google -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7COpen+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    <!-- End Font Google -->
+    <!-- Library CSS -->
+    <link href="css/library/font-awesome.min.css" th:href="@{/css/library/font-awesome.min.css}" rel="stylesheet" >
+    <link href="css/library/bootstrap.min.css" th:href="@{/css/library/bootstrap.min.css}" rel="stylesheet" >
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>
-
+    <!--<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>-->
     <!-- FA 5 -->
-    <link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>
-
-    <!-- My styles -->
-    <link rel="stylesheet" th:href="@{/css/styles.css}"
-          href="../static/css/styles.css"/>
+    <!--<link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>-->
+    <link href="../static/css/library/jquery-ui.min.css" th:href="@{/css/library/jquery-ui.min.css}" rel="stylesheet" />
+    <link href="../static/css/library/owl.carousel.css" th:href="@{/css/library/owl.carousel.css}" rel="stylesheet" />
+    <link href="../static/css/library/jquery.mb.YTPlayer.min.css" th:href="@{/css/library/jquery.mb.YTPlayer.min.css}" rel="stylesheet" />
+    <!-- End Library CSS -->
+    <!-- My CSS -->
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:replace="fragments/header :: head"></header>
-<section id="faces">
-    <div class="faces-container-first-row">
-        <div class="left-faces">
-            <div class="faces-grid">
-                <div class="row text-center">
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-1-l">
-                    </div>
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-2-l">
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-3-l">
-                    </div>
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-4-l">
-                    </div>
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-5-l">
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-6-l">
-                    </div>
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/MaxO.png}" class="face face-7-l">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="logo-univ">
-            <img th:src="@{/img/DimasosLogo.png}">
-        </div>
-        <div class="right-faces">
-            <div class="faces-grid">
-                <div class="row text-center">
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-2-r">
-                    </div>
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-1-r">
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-5-r">
-                    </div>
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-4-r">
-                    </div>
-                    <div class="col-sm-4">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-3-r">
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-7-r">
-                    </div>
-                    <div class="col-sm-6">
-                        <img th:src="@{/img/faces/AlexR.png}" class="face face-6-r">
-                    </div>
-                </div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="tb-cell">
+            <div id="page-loading">
+                <div></div>
+                <p>Loading</p>
             </div>
         </div>
     </div>
-    <div class="faces-container-second-row text-center">
-        <div class="univ-text">
-            Димасосский университет набирает студентов
-        </div>
+    <!-- Wrap -->
+    <div id="wrap">
+        <header id="header" class="header" th:replace="fragments/header :: head"></header>
+        <!--Banner-->
+        <section class="banner">
+            <!--Background-->
+            <div class="bg-parallax bg-6"></div>
+            <div class="overlay"></div>
+            <!--End Background-->
+            <div class="container">
+                <!-- Banner Content -->
+                <div class="banner-cn">
+                    <!-- Logo -->
+                    <div class="logo-banner text-center">
+                        <a href="" title="">
+                            <img src="images/logo-banner.png" alt="">
+                        </a>
+                    </div>
+                    <!-- Logo -->
+                    <!-- Category Singer -->
+                    <div class="category-singer clearfix">
+                        <div class="cate-singer-icon float-left">
+                            <h2>Flight</h2>
+                            <img src="images/icon-flight.png" alt="">
+                        </div>
+                        <p>Over <span th:text="${countFlight}">999</span> flights for you choice</p>
+                    </div>
+                    <!-- End Category Singer -->
+                    <!-- Form Search -->
+                    <div class="form-cn form-flight">
+                        <form th:action="@{/flight-list}" th:object="${FlightSearchForm}" method="post">
+                        <h2>Where would you like to go?</h2>
+                        <div class="form-search clearfix">
+                            <div class="form-field field-select field-from">
+                                <div class="select">
+                                    <span>Flight from:</span>
+                                    <select th:name="fromPlace">
+                                        <option th:value="null">Flight from:</option>
+                                        <option th:each="fromPlace:${places}" th:value="${fromPlace.placeAbbreviation}"><span th:text="${fromPlace.placeName}"></span></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-field field-select field-to">
+                                <div class="select">
+                                    <span>To:</span>
+                                    <select th:name="toPlace">
+                                        <option th:value="null">To:</option>
+                                        <option th:each="toPlace:${places}" th:value="${toPlace.placeAbbreviation}"><span th:text="${toPlace.placeName}"></span></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-submit">
+                                <button type="submit" class="awe-btn awe-btn-medium awe-search">Search</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <!-- End Form Search -->
+                </div>
+                <!-- End Banner Content -->
+            </div>
+
+        </section>
+        <!--End Banner-->
+
+        <!-- Flight Deals -->
+        <section class="cruise-deals">
+            <!-- Title -->
+            <div class="title-wrap">
+                <div class="container">
+                    <div class="travel-title float-left">
+                        <h2>Last-Minute Cruise Deals: <span th:each="place,iterStat : ${places}" th:if="${iterStat.index}<3"><span th:text="${place.placeName}">Country</span>, </span><span>&amp; more</span></h2>
+                    </div>
+                </div>
+            </div>
+            <!-- End Title -->
+            <!-- Cruise Deals Content -->
+            <div class="container">
+                <div class="cruise-deals-cn clearfix">
+                    <!-- Flight Deal Item -->
+                    <div class="col-xs-6 col-md-4 col-lg-3" th:each="flight:${flights}">
+                        <div class="flight-deal-item">
+                            <figure class="flight-img">
+                                <a th:href="@{/flight-list/__${flight.getPlaceFrom().getPlaceAbbreviation()}__/__${flight.getPlaceTo().getPlaceAbbreviation()}__}" title="">
+                                    <img th:src="@{images/countries/__${flight.getPlaceTo().getPlaceAbbreviation()}__.jpg}" alt="">
+                                </a>
+                            </figure>
+                            <div class="flight-text">
+                                <div class="flight-name">
+                                    <a title="" th:text="${flight.getPlaceTo().getPlaceName()}">Contry To</a>
+                                </div>
+                                <div class="flight-price">
+                                    <span class="price"><span th:text="${flight.getFlightCost()}"></span> USD</span>
+                                    depart from <span th:text="${flight.getPlaceFrom().getPlaceName()}">Country</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Flight Deal Item -->
+                </div>
+            </div>
+            <!-- End Cruise Deals Content -->
+        </section>
+        <!-- End Flight Deals -->
+        <footer th:replace="fragments/footer :: scripts"></footer>
     </div>
-</section>
-<div th:replace="fragments/footer :: scripts"></div>
 </body>
 </html>

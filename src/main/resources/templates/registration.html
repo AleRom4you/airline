@@ -1,184 +1,150 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Dimasos University - Регистрация</title>
+    <title th:text="${title}"></title>
 
+    <!-- Font Google -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7COpen+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    <!-- End Font Google -->
+    <!-- Library CSS -->
+    <link href="css/library/font-awesome.min.css" th:href="@{/css/library/font-awesome.min.css}" rel="stylesheet" >
+    <link href="css/library/bootstrap.min.css" th:href="@{/css/library/bootstrap.min.css}" rel="stylesheet" >
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>
-
+    <!--<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>-->
     <!-- FA 5 -->
-    <link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>
-
-    <!-- My styles -->
-    <link rel="stylesheet" th:href="@{/css/styles.css}"
-          href="../static/css/styles.css"/>
+    <!--<link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>-->
+    <link href="../static/css/library/jquery-ui.min.css" th:href="@{/css/library/jquery-ui.min.css}" rel="stylesheet" />
+    <link href="../static/css/library/owl.carousel.css" th:href="@{/css/library/owl.carousel.css}" rel="stylesheet" />
+    <link href="../static/css/library/jquery.mb.YTPlayer.min.css" th:href="@{/css/library/jquery.mb.YTPlayer.min.css}" rel="stylesheet" />
+    <!-- End Library CSS -->
+    <!-- My CSS -->
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:replace="fragments/header :: head"></header>
-<section id="register">
-    <div class="register-form-container">
-        <div class="register-form">
-            <div class="auth-logo">
-                <img src="../static/img/DimasosLogo.png" th:src="@{/img/DimasosLogo.png}" alt="">
-            </div>
-            <div class="form-content">
-                <div th:if="${param.success}">
-                    <div class="alert alert-info">
-                        Ого. Успешная регистрация подъехала. Теперь вы можете сполна насладиться контентом данного
-                        сайта. Но это не точно...
-                    </div>
-                </div>
-                <form th:action="@{/registration}" th:object="${user}" method="post">
-                    <p class="error-message alert alert-warning"
-                       th:if="${#fields.hasGlobalErrors()}"
-                       th:each="error : ${#fields.errors('global')}"
-                       th:text="${error}">Что-то пошло не так</p>
+<!-- Preloader -->
+<div id="preloader">
+    <div class="tb-cell">
+        <div id="page-loading">
+            <div></div>
+            <p>Loading</p>
+        </div>
+    </div>
+</div>
+<!-- Wrap -->
+<div id="wrap">
+    <header id="header" class="header" th:replace="fragments/header :: head"></header>
+    <!--Banner-->
+    <section class="sub-banner">
+        <!--Background-->
+        <div class="bg-parallax bg-1"></div>
+        <!--End Background-->
+        <!-- Logo -->
+        <div class="logo-banner text-center">
+            <a href="" title="">
+                <img src="images/logo-banner.png" alt="">
+            </a>
+        </div>
+        <!-- Logo -->
+    </section>
+    <!--End Banner-->
 
-                    <div class="form-group">
-                        <label for="lastName">Фамилия</label>
-                        <input type="text" class="form-control"
-                               th:classappend="${#fields.hasErrors('lastName')}? 'is-invalid':''"
-                               th:field="*{lastName}" id="lastName" placeholder="Фамилия" required>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('lastName')}"
-                             th:text="${error}">
-                        </div>
+    <!-- Main -->
+    <div class="main">
+        <div class="container">
+            <div class="main-cn element-page bg-white clearfix">
+                <!--Breakcrumb-->
+                <section class="breakcrumb-sc">
+                    <ul class="breadcrumb arrow">
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        <li>User Sign up</li>
+                    </ul>
+                    <div class="support float-right">
+                        <small>Got a question?</small> 123-123-1234
                     </div>
+                </section>
+                <!--End Breakcrumb-->
 
-                    <div class="form-group">
-                        <label for="firstName">Имя</label>
-                        <input type="text" class="form-control"
-                               th:classappend="${#fields.hasErrors('firstName')}? 'is-invalid':''"
-                               th:field="*{firstName}" id="firstName" placeholder="Имя" required>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('firstName')}"
-                             th:text="${error}">
-                        </div>
-                    </div>
+                <section class="user-profile">
+                    <div class="user-form">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="user-profile__title">Sign up</h2>
+                                <p>Sign up now and receive exclusive offers with huge discounts </p>
+                                <div th:if="${param.success}">
+                                    <div class="alert alert-info">
+                                        Wow. Successful registration drove up. Now you can fully enjoy the content of this site. But it is not exactly...
+                                    </div>
+                                </div>
+                                <form th:action="@{/registration}" th:object="${user}" method="post">
+                                    <p class="error-message alert alert-warning"
+                                       th:if="${#fields.hasGlobalErrors()}"
+                                       th:each="error : ${#fields.errors('global')}"
+                                       th:text="${error}">Oops, error!
+                                    </p>
+                                    <div class="field-input">
+                                        <input type="text" class="input-text"
+                                               th:classappend="${#fields.hasErrors('userLastName')}? 'is-invalid':''"
+                                               th:field="*{userLastName}" id="userLastName" placeholder="Last Name" value="Last Name *" required>
+                                        <div class="invalid-feedback" th:each="error: ${#fields.errors('userLastName')}"
+                                             th:text="${error}">
+                                        </div>
+                                    </div>
+                                    <div class="field-input">
+                                        <input type="text" class="input-text"
+                                               th:classappend="${#fields.hasErrors('userFirstName')}? 'is-invalid':''"
+                                               th:field="*{userFirstName}" id="userFirstName" placeholder="First name" value="First name *" required>
+                                        <div class="invalid-feedback" th:each="error: ${#fields.errors('userFirstName')}"
+                                             th:text="${error}">
+                                        </div>
+                                    </div>
 
-                    <div class="form-group">
-                        <label for="faculty">Факультет</label>
-                        <select class="custom-select" id="faculty" th:field="*{faculty}"
-                                th:classappend="${#fields.hasErrors('faculty')}? 'is-invalid':''" required>
-                            <option value="">Выберите факультет</option>
-                            <option th:each="facultys : ${facultys}" th:value="${facultys.id}"
-                                    th:text="${facultys.faculty}">
-                            </option>
-                        </select>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('faculty')}"
-                             th:text="${error}">
-                        </div>
-                    </div>
+                                    <div class="field-input">
+                                        <input type="text" class="input-text"
+                                               th:classappend="${#fields.hasErrors('userEmail')}? 'is-invalid':''"
+                                               th:field="*{userEmail}" id="userEmail" placeholder="E-mail" value="E-mail" required>
+                                        <div class="invalid-feedback" th:each="error: ${#fields.errors('userEmail')}"
+                                             th:text="${error}">
+                                        </div>
+                                    </div>
 
-                    <div id="subjects" class="d-none">
-                        <div class="form-group">
-                            <label for="mark1" id="subject0-title">Предмет 1</label>
-                            <input type="number" class="form-control" id="mark1" th:field="*{mark1}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="mark2" id="subject1-title">Предмет 2</label>
-                            <input type="number" class="form-control" id="mark2" th:field="*{mark2}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="mark3" id="subject2-title">Предмет 1</label>
-                            <input type="number" class="form-control" id="mark3" th:field="*{mark3}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="certificate" id="certificate-title">Балл аттестата</label>
-                            <input type="number" class="form-control" id="certificate" th:field="*{certificate}" required>
-                        </div>
-                    </div>
+                                    <div class="field-input">
+                                        <input type="password" class="input-text"
+                                               th:classappend="${#fields.hasErrors('userPassword')}? 'is-invalid':''"
+                                               th:field="*{userPassword}" id="userPassword" placeholder="Password" value="Password" required>
+                                        <div class="invalid-feedback" th:each="error: ${#fields.errors('userPassword')}"
+                                             th:text="${error}">
+                                        </div>
+                                    </div>
 
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="text" class="form-control"
-                               th:classappend="${#fields.hasErrors('email')}? 'is-invalid':''"
-                               th:field="*{email}" id="email" placeholder="E-mail" required>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('email')}"
-                             th:text="${error}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" class="form-control"
-                               th:classappend="${#fields.hasErrors('password')}? 'is-invalid':''"
-                               th:field="*{password}" id="password" required>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('password')}"
-                             th:text="${error}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirmPassword">Пароль</label>
-                        <input type="password" class="form-control"
-                               th:classappend="${#fields.hasErrors('confirmPassword')}? 'is-invalid':''"
-                               th:field="*{confirmPassword}" id="confirmPassword" required>
-                        <div class="invalid-feedback" th:each="error: ${#fields.errors('confirmPassword')}"
-                             th:text="${error}">
-                        </div>
-                    </div>
-
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"
-                               th:classappend="${#fields.hasErrors('terms')}? 'is-invalid':''" id="terms"
-                               th:field="*{terms}" required>
-                        <label class="custom-control-label" for="terms">
-                            Я согласен с <a href="#">правилами университета</a>
-                        </label>
-                        <div class="invalid-feedback"
-                             th:each="error : ${#fields.errors('terms')}"
-                             th:text="${error}">
+                                    <div class="field-input">
+                                        <input type="password" class="input-text"
+                                               th:classappend="${#fields.hasErrors('userConfirmPassword')}? 'is-invalid':''"
+                                               th:field="*{userConfirmPassword}" id="userConfirmPassword" placeholder="Confirm Password" value="Confirm Password" required>
+                                        <div class="invalid-feedback" th:each="error: ${#fields.errors('userConfirmPassword')}"
+                                             th:text="${error}">
+                                        </div>
+                                    </div>
+                                    <div class="field-input">
+                                        <button type="submit" class="awe-btn awe-btn-1 awe-btn-medium">Registration</button>
+                                    </div>
+                                    <div class="field-input">
+                                        <span>Already registered? <a href="/" th:href="@{/login}">SignIn</a></span>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-success mt-3 mb-3">Зарегистрироваться</button>
-                    <span>Уже зарегистрированы? <a href="/" th:href="@{/login}">Авотризация</a></span>
-                </form>
+                </section>
             </div>
         </div>
     </div>
-</section>
-<div th:replace="fragments/footer :: scripts"></div>
-<script>
-    function updateNames(e) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4) {
-                var arr = this.responseText.split("\n");
-
-                console.log(arr);
-
-                if (arr.length > 0 && this.responseText.length > 0 && this.status === 200) {
-                    var counter = 0;
-                    for (var subject in arr) {
-                        $("#subject" + counter + "-title").text(arr[subject]);
-
-                        counter++;
-                    }
-
-                    $("#subjects").removeClass("d-none");
-                } else {
-                    $("#subjects").addClass("d-none");
-                }
-            }
-        };
-
-        console.log(e);
-
-        xhttp.open("GET", "/AJAX/subjects?id=" + e.selectedIndex, true);
-        xhttp.send();
-    }
-
-    const facultySelect = $("#faculty");
-
-    facultySelect.change(function (e) {
-        updateNames(this);
-    });
-
-    updateNames(facultySelect[0]);
-</script>
+    <!-- End Main -->
+    <footer th:replace="fragments/footer :: scripts"></footer>
+</div>
 </body>
 </html>

@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>by.grsu.boldak</groupId>
-    <artifactId>selection_committee_boldak</artifactId>
+    <groupId>by.grsu.romanovskij</groupId>
+    <artifactId>AirLine</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-
-    <faculty>boldak</faculty>
-    <description>Selection committee by Boldak D.A. CS-161</description>
+    <name>AirLine</name>
+    <description>System Airline. The airline has a list of flights. The dispatcher forms the Flight Brigade (pilots, navigator, radio operator, stewardess) on the Flight. The administrator manages the list of flights.</description>
+    <url>https://github.com/AleRom4you/airline</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -38,7 +38,6 @@
         </dependency>
 
         <!-- hot swapping, disable cache for template, enable live reload -->
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

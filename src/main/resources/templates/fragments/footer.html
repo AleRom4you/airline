@@ -1,27 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <title>Dimasos University - Авторизация</title>
-
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>
-
-    <!-- FA 5 -->
-    <link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>
-
-    <!-- My styles -->
-    <link rel="stylesheet" th:href="@{/css/styles.css}"
-          href="../static/css/styles.css"/>
-</head>
 <body>
-<div th:fragment="scripts">
+<footer th:fragment="scripts">
+    <div class="container">
+        <div class="row">
+            <!-- Logo -->
+            <div class="col-md-4">
+                <div class="logo-foter">
+                    <a href="/" title=""><img th:src="@{/images/logo-footer.png}" alt=""></a>
+                </div>
+                <!--CopyRight-->
+                <p class="center-block">
+                    ©2018 Romanovsky™ All rights reserved.
+                </p>
+                <!--CopyRight-->
+            </div>
+            <!-- End Logo -->
+            <!-- Navigation Footer -->
+            <div class="col-md-4">
+                <div class="ul-ft">
+                    <ul>
+                        <li><a href="/" title="">Home</a></li>
+                        <li th:unless="${authorized}">
+                            <a href="/login" title="">SignIn</a>
+                        </li>
+                        <li th:unless="${authorized}">
+                            <a href="/registration">SignUp</a>
+                        </li>
+                        <li th:if="${authorized} AND ${role.roleName}=='ROLE_ADMIN'">
+                            <a href="/flight-list/manage">List of flights</a>
+                        </li>
+                        <li th:if="${authorized} AND ${role.roleName}=='ROLE_MANAGER'">
+                            <a href="/brigade-list">List of brigades</a>
+                        </li>
+                        <li th:if="${authorized}">
+                            <a href="/logout" title="">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Navigation Footer -->
+            <!-- Navigation Footer -->
+            <div class="col-md-4">
+                <div class="ul-ft">
+                    <ul>
+                        <li><a href="https://github.com/AleRom4you/AirLine" title="">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Navigation Footer -->
+        </div>
+    </div>
+    <!-- Library JS -->
+    <script type="text/javascript" th:src="@{/js/library/jquery-1.11.0.min.js}" src="../static/js/library/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" th:src="@{/js/library/jquery-ui.min.js}" src="../static/js/library/jquery-ui.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/owl.carousel.min.js}" src="../static/js/library/owl.carousel.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/parallax.min.js}" src="../static/js/library/parallax.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/jquery.nicescroll.js}" src="../static/js/library/jquery.nicescroll.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/jquery.ui.touch-punch.min.js}" src="../static/js/library/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/jquery.mb.YTPlayer.min.js}" src="../static/js/library/jquery.mb.YTPlayer.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/library/SmoothScroll.js}" src="../static/js/library/SmoothScroll.js"></script>
+    <!-- End Library JS -->
+    <!-- Main Js -->
+    <script type="text/javascript" th:src="@{/js/script.js}" src="../static/js/script.js"></script>
+    <!-- End Main Js -->
+
     <script type="text/javascript" src="webjars/jquery/3.0.0/jquery.min.js"></script>
     <!--<script type="text/javascript" src="webjars/popper.js/1.12.9-1/popper.min.js"></script>-->
     <script type="text/javascript" src="webjars/bootstrap/4.0.0-1/js/bootstrap.min.js"></script>
-</div>
+</footer>
 </body>
 </html>

@@ -1,65 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>
-
-    <!-- My styles -->
-
-    <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}"/>
-</head>
 <body>
 <header th:fragment="head">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="/">
-            <img th:src="@{/img/DimasosLogo.png}" width="30" height="30" class="d-inline-block align-top" alt="">
-            Dimasos University
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-            <!--/*@thymesVar id="authorized" type="by.grsu.boldak.controller.MainControllerAdvice"*/-->
-            <div th:unless="${authorized}">
-                <a href="/login" class="btn btn-info my-2 my-sm-0">Авторизоваться</a>
-            </div>
-            <div class="authenticated" th:if="${authorized}">
-                <div class="greeting">
-                <span th:text="${account.firstName}"></span>
-                <span th:text="${account.lastName}"></span>,
-                <span>здравствуйте!</span>
-                </div>
-                <a href="/logout" class="btn btn-danger my-2 my-sm-0">Выйти</a>
-            </div>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo float-left">
+            <a href="/" title=""><img th:src="@{/images/logo-header.png}" alt=""></a>
         </div>
-    </nav>
+        <!-- End Logo -->
+        <!-- Bars -->
+        <div class="bars" id="bars"></div>
+        <!-- End Bars -->
+
+        <!--Navigation-->
+        <nav class="navigation nav-c" id="navigation" data-menu-type="1200">
+            <div class="nav-inner">
+                <a href="#" class="bars-close" id="bars-close">Close</a>
+                <div class="tb">
+                    <div class="tb-cell">
+                        <ul class="menu-list text-uppercase">
+                            <li class="current-menu-parent">
+                                <a href="/" title="">Home</a>
+                            </li>
+                            <li th:unless="${authorized}">
+                                <a href="#" title="">User</a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="/login" title="">SignIn</a>
+                                    </li>
+                                    <li>
+                                        <a href="/registration">SignUp</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li th:if="${authorized}">
+                                <a href="#" title="">
+                                    <span th:text="${account.userFirstName}"></span>
+                                    <span th:text="${account.userLastName}"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li th:if="${role.roleName}=='ROLE_ADMIN'">
+                                        <a href="/flight-list/manage">List of flights</a>
+                                    </li>
+                                    <li th:if="${role.roleName}=='ROLE_MANAGER'">
+                                        <a href="/brigade-list">List of brigades</a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout" title="">LogOut</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--End Navigation-->
+    </div>
 </header>
 </body>
 </html>

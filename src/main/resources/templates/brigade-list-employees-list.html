@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title th:text="${title}"></title>
+
+    <!-- Font Google -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7COpen+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    <!-- End Font Google -->
+    <!-- Library CSS -->
+    <link href="css/library/font-awesome.min.css" th:href="@{/css/library/font-awesome.min.css}" rel="stylesheet" >
+    <link href="css/library/bootstrap.min.css" th:href="@{/css/library/bootstrap.min.css}" rel="stylesheet" >
+    <!-- Bootstrap 4 -->
+    <!--<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css"/>-->
+    <!-- FA 5 -->
+    <!--<link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css"/>-->
+    <link href="../static/css/library/jquery-ui.min.css" th:href="@{/css/library/jquery-ui.min.css}" rel="stylesheet" />
+    <link href="../static/css/library/owl.carousel.css" th:href="@{/css/library/owl.carousel.css}" rel="stylesheet" />
+    <link href="../static/css/library/jquery.mb.YTPlayer.min.css" th:href="@{/css/library/jquery.mb.YTPlayer.min.css}" rel="stylesheet" />
+    <!-- End Library CSS -->
+    <!-- My CSS -->
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<!-- Preloader -->
+<div id="preloader">
+    <div class="tb-cell">
+        <div id="page-loading">
+            <div></div>
+            <p>Loading</p>
+        </div>
+    </div>
+</div>
+<!-- Wrap -->
+<div id="wrap">
+    <header id="header" class="header" th:replace="fragments/header :: head"></header>
+    <!--Banner-->
+    <section class="sub-banner">
+        <!--Background-->
+        <div class="bg-parallax bg-1"></div>
+        <!--End Background-->
+        <!-- Logo -->
+        <div class="logo-banner text-center">
+            <a href="" title="">
+                <img src="images/logo-banner.png" alt="">
+            </a>
+        </div>
+        <!-- Logo -->
+    </section>
+    <!--End Banner-->
+
+    <!-- Main -->
+    <div class="main">
+        <div class="container">
+            <div class="main-cn flight-page bg-white clearfix">
+                <div class="row">
+
+                    <!-- Flight Right -->
+                    <div class="col-md-9 col-md-push-3">
+
+                        <!-- Breakcrumb -->
+                        <section class="breakcrumb-sc">
+                            <ul class="breadcrumb arrow">
+                                <li><a href="/"><i class="fa fa-home"></i></a></li>
+                                <li><a href="/brigade-list" title="">Brigade List</a></li>
+                                <li><a href="#" th:text="${brigade.getBrigadeNumber()}"></a></li>
+                                <li><a href="#" title="">Employee List</a></li>
+                            </ul>
+                        </section>
+                        <!-- End Breakcrumb -->
+
+                        <!-- Flight List -->
+                        <section class="flight-list">
+                            <div>
+                                <!-- Flight List Table -->
+                                <div class="flight-list-cn">
+                                    <div class="responsive-table scroll-table">
+                                        <table class="table flight-table table-radio">
+                                            <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                <th>Employee</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="employee:${employees}">
+                                                <td class="td" th:text="${employee.getEmployeePositions().getEmployeepositionsName()}"></td>
+                                                <td class="td-airline">
+                                                    <span th:text="${employee.getEmployeeFirstName()}"></span>
+                                                    <span th:text="${employee.getEmployeeLastName()}"></span>
+                                                    <span th:text="${employee.getEmployeeMiddleName()}"></span>
+                                                </td>
+                                                <td>
+                                                    <a role="button" th:href="@{/brigade-list/__${brigade.getBrigadeId()}__/employee/__${employee.getEmployeeId()}__/kick}" class="awe-btn awe-btn-1 awe-btn-small">Kick</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- End Flight List Table -->
+                            </div>
+                        </section>
+                        <!-- End Flight List -->
+
+                    </div>
+                    <!-- End Flight Right -->
+
+                    <!-- Sidebar -->
+                    <div class="col-md-3 col-md-pull-9">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-cn">
+
+                            <!-- Search Result -->
+                            <div class="search-result">
+                                <p>
+                                    We found <br>
+                                    <ins th:text="${count}">999</ins> <span>employees</span>
+                                </p>
+                            </div>
+                            <!-- End Search Result -->
+                            <!-- Search Form Sidebar -->
+                            <div class="search-sidebar">
+                                <div class="row">
+                                    <div class="form-search clearfix">
+                                        <div class="form-submit col-md-12">
+                                            <a role="button" th:href="@{/brigade-list/__${brigade.getBrigadeId()}__/employee/add}" class="awe-btn awe-btn-lager">Add Employee</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Search Form Sidebar -->
+                        </div>
+                        <!-- End Sidebar Content -->
+                    </div>
+                    <!-- End Sidebar -->
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Main -->
+    <footer th:replace="fragments/footer :: scripts"></footer>
+</div>
+</body>
+</html>
