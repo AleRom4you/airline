@@ -2,18 +2,21 @@ package by.grsu.romanovskij.controller;
 
 import by.grsu.romanovskij.DataTransferObject.UserRegistrationDto;
 import by.grsu.romanovskij.model.User;
+import by.grsu.romanovskij.service.RecaptchaService;
 import by.grsu.romanovskij.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/registration")
@@ -24,6 +27,8 @@ public class UserRegistrationController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RecaptchaService recaptchaService;
 
 	@ModelAttribute("user")
 	public UserRegistrationDto userRegistrationDto() {
@@ -38,7 +43,10 @@ public class UserRegistrationController {
 
 	@PostMapping
 	public String registerUserAccount(Model model, @ModelAttribute("user") @Valid UserRegistrationDto userDto,
-									  BindingResult result) {
+									  BindingResult result, @RequestParam(name="g-recaptcha-response") String recaptchaResponse,
+									  HttpServletRequest request) {
+		String ip = request.getRemoteAddr();
+		String captchaVerifyMessage = recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
 
 		User existing = userService.findByUserEmail(userDto.getUserEmail());
 		if (existing != null) {
@@ -46,6 +54,14 @@ public class UserRegistrationController {
 		}
 
 		if (result.hasErrors()) {
+			return "registration";
+		}
+
+		if (!StringUtils.isEmpty(captchaVerifyMessage)) {
+			Map<String, Object> response = new HashMap<>();
+			model.addAttribute("error", "GoogleCaptcha says you're a robot!");
+			response.put("message", captchaVerifyMessage);
+			logger.error(response);
 			return "registration";
 		}
 

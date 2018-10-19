@@ -18,6 +18,13 @@ public class Brigade {
     @OneToMany(mappedBy="brigade")
     private Set<Flight> flightSet;
 
+    public Brigade() {
+    }
+
+    public Brigade(String brigadeNumber) {
+        this.brigadeNumber = brigadeNumber;
+    }
+
     public Integer getBrigadeId() {
         return brigadeId;
     }

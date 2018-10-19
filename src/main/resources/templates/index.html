@@ -71,7 +71,7 @@
                             <div class="form-field field-select field-from">
                                 <div class="select">
                                     <span>Flight from:</span>
-                                    <select th:name="fromPlace">
+                                    <select th:name="fromPlace" required>
                                         <option th:value="null">Flight from:</option>
                                         <option th:each="fromPlace:${places}" th:value="${fromPlace.placeAbbreviation}"><span th:text="${fromPlace.placeName}"></span></option>
                                     </select>
@@ -80,7 +80,7 @@
                             <div class="form-field field-select field-to">
                                 <div class="select">
                                     <span>To:</span>
-                                    <select th:name="toPlace">
+                                    <select th:name="toPlace" required>
                                         <option th:value="null">To:</option>
                                         <option th:each="toPlace:${places}" th:value="${toPlace.placeAbbreviation}"><span th:text="${toPlace.placeName}"></span></option>
                                     </select>

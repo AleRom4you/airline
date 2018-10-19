@@ -13,6 +13,14 @@ public class Place {
     private String placeAbbreviation;
     private String placeName;
 
+    public Place() {
+    }
+
+    public Place(String placeAbbreviation, String placeName) {
+        this.placeAbbreviation = placeAbbreviation;
+        this.placeName = placeName;
+    }
+
     public Integer getPlaceId() {
         return placeId;
     }

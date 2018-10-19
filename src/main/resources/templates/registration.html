@@ -24,6 +24,7 @@
     <!-- End Library CSS -->
     <!-- My CSS -->
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/api.js" th:src="@{https://www.google.com/recaptcha/api.js}"></script>
 </head>
 <body>
 <!-- Preloader -->
@@ -80,6 +81,9 @@
                                         Wow. Successful registration drove up. Now you can fully enjoy the content of this site. But it is not exactly...
                                     </div>
                                 </div>
+                                <div th:if="${error}">
+                                    <div class="alert alert-error" th:text="${error}"></div>
+                                </div>
                                 <form th:action="@{/registration}" th:object="${user}" method="post">
                                     <p class="error-message alert alert-warning"
                                        th:if="${#fields.hasGlobalErrors()}"
@@ -129,6 +133,7 @@
                                              th:text="${error}">
                                         </div>
                                     </div>
+                                    <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6LcQpnIUAAAAAI5Jgyc9qCGer06CrW1_TuW0wSv_"></div>
                                     <div class="field-input">
                                         <button type="submit" class="awe-btn awe-btn-1 awe-btn-medium">Registration</button>
                                     </div>

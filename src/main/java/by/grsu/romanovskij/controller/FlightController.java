@@ -70,15 +70,26 @@ public class FlightController {
         return "flight-list";
     }
 
-    @RequestMapping(value = "/flight-list", method = RequestMethod.POST)
+//    @RequestMapping(value = "/flight-list", method = RequestMethod.POST)
+    @RequestMapping(value = "/flight-list")
     public String flightList(Model model,
                              @ModelAttribute FlightSearchForm flightSearchForm) {
+
+        if (flightSearchForm.getFromPlace() == null || flightSearchForm.getToPlace() == null)
+            return "error404";
 
         String fromPlace = flightSearchForm.getFromPlace();
         String toPlace = flightSearchForm.getToPlace();
 
+        String pattern = "[a-z]{2}";
+        if (!fromPlace.matches(pattern) || !toPlace.matches(pattern))
+            return "index";
+
         Place placeFrom = placeRepository.findByPlaceAbbreviation(fromPlace);
         Place placeTo = placeRepository.findByPlaceAbbreviation(toPlace);
+
+        if (placeFrom == null || placeTo == null)
+            return "error404";
 
         model.addAttribute("title",
                 placeFrom.getPlaceAbbreviation() + " - " +

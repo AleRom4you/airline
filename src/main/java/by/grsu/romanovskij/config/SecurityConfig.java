@@ -35,14 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
+					.loginPage("/login")
+					.defaultSuccessUrl("/")
+					.permitAll()
+					.and()
 				.logout()
 				.invalidateHttpSession(true)
 				.clearAuthentication(true)
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login?logout")
+				.logoutSuccessUrl("/")
 				.permitAll();
 	}
 
@@ -63,5 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
-
 }

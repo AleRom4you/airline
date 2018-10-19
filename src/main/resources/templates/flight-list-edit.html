@@ -147,7 +147,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="field-input">
-                                                <input id="flightCost" th:name="flightCost" type="text" class="input-text" placeholder="Price" th:value="${flight.getFlightCost()}">
+                                                <input id="flightCost" th:name="flightCost" type="number" min="0" step="0.1" class="input-text" placeholder="Price" th:value="${flight.getFlightCost()}">
                                             </div>
                                         </div>
                                     </div>
